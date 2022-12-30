@@ -6,6 +6,9 @@ import com.wamazon.wamazonservice.exception.ValidationException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+/**
+ * Контроллер для обработки ошибок, выбрасываемых в рамках проекта
+ */
 @RestControllerAdvice
 public class ExceptionHandlerController {
 
@@ -26,7 +29,7 @@ public class ExceptionHandlerController {
     @ExceptionHandler(NotFoundException.class)
     public ErrorNotification handleNotFoundException(NotFoundException e) {
         ErrorNotification errorNotification = new ErrorNotification();
-        errorNotification.setErrorMessage("Объект который вы искали не найден");
+        errorNotification.setErrorMessage("Объект который вы искали не найден.");
         return errorNotification;
     }
 }

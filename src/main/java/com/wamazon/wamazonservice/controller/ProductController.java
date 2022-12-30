@@ -1,16 +1,19 @@
 package com.wamazon.wamazonservice.controller;
 
-import com.wamazon.wamazonservice.dto.ErrorNotification;
 import com.wamazon.wamazonservice.dto.Product;
+import com.wamazon.wamazonservice.service.ICrudService;
 import com.wamazon.wamazonservice.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/product")
-public class ProductController {
+public class ProductController extends CrudController<Product> {
 
     @Autowired
     private IProductService productService;
@@ -20,23 +23,8 @@ public class ProductController {
         return productService.findByName(name);
     }
 
-    @GetMapping("/{id}")
-    public Product get(@PathVariable Long id) {
-        return productService.get(id);
-    }
-
-    @PostMapping
-    public Product save(@RequestBody Product product) {
-        return productService.save(product);
-    }
-
-    @PutMapping
-    public Product update(@RequestBody Product product) {
-        return productService.update(product);
-    }
-
-    @DeleteMapping("/{id}")
-    public void update(@PathVariable Long id) {
-        productService.delete(id);
+    @Override
+    public ICrudService<Product> getService() {
+        return productService;
     }
 }
