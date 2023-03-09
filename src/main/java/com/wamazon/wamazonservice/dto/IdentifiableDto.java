@@ -2,8 +2,11 @@ package com.wamazon.wamazonservice.dto;
 
 import java.util.Objects;
 
-public abstract class LongIdDto {
+public abstract class IdentifiableDto {
 
+    /**
+     * Уникальный идентификатор из БД
+     */
     private Long id;
 
     public Long getId() {
@@ -22,8 +25,8 @@ public abstract class LongIdDto {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        LongIdDto longIdDto = (LongIdDto) o;
-        return id == longIdDto.id;
+        IdentifiableDto identifiableDto = (IdentifiableDto) o;
+        return id == identifiableDto.id;
     }
 
     @Override

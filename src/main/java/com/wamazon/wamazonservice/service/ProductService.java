@@ -1,9 +1,8 @@
 package com.wamazon.wamazonservice.service;
 
-import com.wamazon.wamazonservice.dto.Product;
-import com.wamazon.wamazonservice.exception.ValidationException;
-import com.wamazon.wamazonservice.repository.ICrudRepository;
-import com.wamazon.wamazonservice.repository.ProductRepository;
+import com.wamazon.wamazonservice.entity.Product;
+import com.wamazon.wamazonservice.repository.IBaseRepository;
+import com.wamazon.wamazonservice.repository.IProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -14,21 +13,26 @@ import java.util.List;
 public class ProductService extends CrudService<Product> implements IProductService {
 
     @Autowired
-    private ProductRepository productRepository;
-
-    @Value("${login}")
-    private String test;
+    private IProductRepository productRepository;
+    @Value("${min.password.length}")
+    private Integer minPasswordLength;
 
     @Override
-    public ICrudRepository<Product> getRepository() {
+    public IBaseRepository<Product> getRepository() {
         return productRepository;
     }
 
     @Override
-    protected void validate(Product product) {
+    protected boolean validate(Product product) {
         if (product.getName() == null) {
-            throw new ValidationException("Нельзя сохранять товар без названия");
+            return false;
         }
+
+        return false;
+    }
+
+    public int calculateCost(int a, int b) {
+        return a + b + 1;
     }
 
     public List<Product> findByName(String name) {

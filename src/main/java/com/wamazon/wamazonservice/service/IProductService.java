@@ -1,6 +1,6 @@
 package com.wamazon.wamazonservice.service;
 
-import com.wamazon.wamazonservice.dto.Product;
+import com.wamazon.wamazonservice.entity.Product;
 
 import java.util.List;
 

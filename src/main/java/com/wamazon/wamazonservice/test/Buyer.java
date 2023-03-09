@@ -1,5 +1,8 @@
-package com.wamazon.wamazonservice.dto;
+package com.wamazon.wamazonservice.test;
 
+/**
+ * Покупатель
+ */
 public class Buyer extends User {
 
     private String cardNumber;
@@ -7,6 +10,7 @@ public class Buyer extends User {
     private String address;
 
     private String email;
+
 
     public String getCardNumber() {
         return cardNumber;

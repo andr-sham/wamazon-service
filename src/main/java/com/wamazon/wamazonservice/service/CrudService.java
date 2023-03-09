@@ -1,41 +1,42 @@
 package com.wamazon.wamazonservice.service;
 
-import com.wamazon.wamazonservice.dto.LongIdDto;
-import com.wamazon.wamazonservice.repository.ICrudRepository;
+import com.wamazon.wamazonservice.entity.IdentifiableEntity;
+import com.wamazon.wamazonservice.exception.NotFoundException;
+import com.wamazon.wamazonservice.repository.IBaseRepository;
 
-public abstract class CrudService<T extends LongIdDto> implements ICrudService<T> {
+public abstract class CrudService<T extends IdentifiableEntity> implements ICrudService<T> {
 
-    public abstract ICrudRepository<T> getRepository();
+    public abstract IBaseRepository<T> getRepository();
 
-    protected abstract void validate(T dto);
+    protected abstract boolean validate(T entity);
 
     @Override
-    public T save(T dtoToSave) {
-        if (dtoToSave.getId() != null) {
+    public T save(T entityToSave) {
+        if (entityToSave.getId() != null) {
             throw new RuntimeException("Ошибка сохранения");
         }
 
-        validate(dtoToSave);
-        return getRepository().save(dtoToSave);
+        validate(entityToSave);
+        return getRepository().save(entityToSave);
     }
 
     @Override
     public T get(Long id) {
-        return getRepository().findOne(id);
+        return getRepository().findById(id).orElseThrow(() -> new NotFoundException("Объект с id не найден"));
     }
 
     @Override
-    public T update(T dtoToUpdate) {
-        if (dtoToUpdate.getId() == null) {
+    public T update(T entityToUpdate) {
+        if (entityToUpdate.getId() == null) {
             throw new RuntimeException("Ошибка обновления");
         }
 
-        validate(dtoToUpdate);
-        return getRepository().update(dtoToUpdate);
+        validate(entityToUpdate);
+        return getRepository().save(entityToUpdate);
     }
 
     @Override
     public void delete(Long id) {
-        getRepository().delete(id);
+        getRepository().deleteById(id);
     }
 }

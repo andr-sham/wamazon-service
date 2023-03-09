@@ -1,8 +1,8 @@
 package com.wamazon.wamazonservice.repository;
 
-import com.wamazon.wamazonservice.dto.LongIdDto;
+import com.wamazon.wamazonservice.dto.IdentifiableDto;
 
-public interface ICrudRepository<T extends LongIdDto> {
+public interface ICrudRepository<T extends IdentifiableDto> {
 
     T save(T dtoToSave);
 

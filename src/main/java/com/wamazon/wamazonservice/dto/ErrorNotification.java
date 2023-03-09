@@ -1,14 +1,12 @@
 package com.wamazon.wamazonservice.dto;
 
+import lombok.Data;
+
+import java.util.List;
+
+@Data
 public class ErrorNotification {
 
-    private String errorMessage;
+    private List<String> errorMessages;
 
-    public String getErrorMessage() {
-        return errorMessage;
-    }
-
-    public void setErrorMessage(String errorMessage) {
-        this.errorMessage = errorMessage;
-    }
 }
