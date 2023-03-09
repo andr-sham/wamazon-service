@@ -6,5 +6,7 @@ import java.util.List;
 
 public interface IProductRepository extends IBaseRepository<Product> {
 
-    List<Product> findByName(String name);
+    List<Product> findByNameIgnoreCase(String name);
+
+    List<Product> findByDescription(String description);
 }

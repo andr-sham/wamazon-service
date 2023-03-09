@@ -3,36 +3,23 @@ package com.wamazon.wamazonservice.service;
 import com.wamazon.wamazonservice.entity.IdentifiableEntity;
 import com.wamazon.wamazonservice.exception.NotFoundException;
 import com.wamazon.wamazonservice.repository.IBaseRepository;
+import org.springframework.transaction.annotation.Transactional;
 
+@Transactional
 public abstract class CrudService<T extends IdentifiableEntity> implements ICrudService<T> {
 
     public abstract IBaseRepository<T> getRepository();
 
-    protected abstract boolean validate(T entity);
-
     @Override
     public T save(T entityToSave) {
-        if (entityToSave.getId() != null) {
-            throw new RuntimeException("Ошибка сохранения");
-        }
+        T savedEntity = getRepository().save(entityToSave);
 
-        validate(entityToSave);
-        return getRepository().save(entityToSave);
+        return savedEntity;
     }
 
     @Override
     public T get(Long id) {
         return getRepository().findById(id).orElseThrow(() -> new NotFoundException("Объект с id не найден"));
-    }
-
-    @Override
-    public T update(T entityToUpdate) {
-        if (entityToUpdate.getId() == null) {
-            throw new RuntimeException("Ошибка обновления");
-        }
-
-        validate(entityToUpdate);
-        return getRepository().save(entityToUpdate);
     }
 
     @Override

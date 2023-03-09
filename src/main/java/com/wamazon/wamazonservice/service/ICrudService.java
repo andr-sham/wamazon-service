@@ -8,7 +8,5 @@ public interface ICrudService<T extends IdentifiableEntity> {
 
     T get(Long id);
 
-    T update(T entityToUpdate);
-
     void delete(Long id);
 }

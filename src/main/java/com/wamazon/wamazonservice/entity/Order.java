@@ -7,12 +7,15 @@ import jakarta.persistence.ManyToMany;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity(name = "\"order\"")
 @Getter
 @Setter
 public class Order extends IdentifiableEntity {
+
+    private LocalDate creationDate;
 
     @ManyToMany
     @JoinTable(

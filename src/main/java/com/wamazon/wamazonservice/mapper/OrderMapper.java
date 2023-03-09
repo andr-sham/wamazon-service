@@ -17,6 +17,7 @@ public class OrderMapper implements EntityMapper<Order, OrderDto> {
     public Order mapToEntity(OrderDto dto) {
         Order order = new Order();
         order.setId(dto.getId());
+        order.setCreationDate(dto.getCreationDate());
         order.setProducts(dto.getProducts().stream().map(productMapper::mapToEntity).collect(Collectors.toList()));
         return order;
     }
@@ -25,6 +26,7 @@ public class OrderMapper implements EntityMapper<Order, OrderDto> {
     public OrderDto mapToDto(Order entity) {
         OrderDto orderDto = new OrderDto();
         orderDto.setId(entity.getId());
+        orderDto.setCreationDate(entity.getCreationDate());
         orderDto.setProducts(entity.getProducts().stream().map(productMapper::mapToDto).collect(Collectors.toList()));
         return orderDto;
     }
