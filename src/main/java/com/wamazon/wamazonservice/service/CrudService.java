@@ -1,17 +1,18 @@
 package com.wamazon.wamazonservice.service;
 
-import com.wamazon.wamazonservice.entity.IdentifiableEntity;
+import com.wamazon.wamazonservice.entity.VersionedEntity;
 import com.wamazon.wamazonservice.exception.NotFoundException;
 import com.wamazon.wamazonservice.repository.IBaseRepository;
 import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
-public abstract class CrudService<T extends IdentifiableEntity> implements ICrudService<T> {
+public abstract class CrudService<T extends VersionedEntity> implements ICrudService<T> {
 
     public abstract IBaseRepository<T> getRepository();
 
     @Override
     public T save(T entityToSave) {
+
         T savedEntity = getRepository().save(entityToSave);
 
         return savedEntity;

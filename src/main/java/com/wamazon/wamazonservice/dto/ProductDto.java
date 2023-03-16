@@ -16,7 +16,7 @@ import java.math.BigDecimal;
  */
 @Getter
 @Setter
-public class ProductDto extends IdentifiableDto {
+public class ProductDto extends VersionedDto {
 
     /**
      * Название

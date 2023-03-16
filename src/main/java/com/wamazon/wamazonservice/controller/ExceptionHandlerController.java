@@ -4,6 +4,7 @@ import com.wamazon.wamazonservice.dto.ErrorNotification;
 import com.wamazon.wamazonservice.exception.NotFoundException;
 import com.wamazon.wamazonservice.exception.ValidationException;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.orm.ObjectOptimisticLockingFailureException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -19,6 +20,13 @@ import java.util.List;
 @RestControllerAdvice
 @Slf4j
 public class ExceptionHandlerController {
+
+    @ExceptionHandler(ObjectOptimisticLockingFailureException.class)
+    public ErrorNotification handleObjectOptimisticLockingFailureException(ObjectOptimisticLockingFailureException e) {
+        ErrorNotification errorNotification = new ErrorNotification();
+        errorNotification.setErrorMessages(Collections.singletonList("Данные устарели"));
+        return errorNotification;
+    }
 
     @ExceptionHandler(ValidationException.class)
     public ErrorNotification handleValidationException(ValidationException e) {

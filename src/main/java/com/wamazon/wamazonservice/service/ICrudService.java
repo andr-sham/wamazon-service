@@ -1,8 +1,8 @@
 package com.wamazon.wamazonservice.service;
 
-import com.wamazon.wamazonservice.entity.IdentifiableEntity;
+import com.wamazon.wamazonservice.entity.VersionedEntity;
 
-public interface ICrudService<T extends IdentifiableEntity> {
+public interface ICrudService<T extends VersionedEntity> {
 
     T save(T entityToSave);
 

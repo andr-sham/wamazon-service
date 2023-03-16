@@ -6,11 +6,9 @@ import com.wamazon.wamazonservice.mapper.EntityMapper;
 import com.wamazon.wamazonservice.mapper.ProductMapper;
 import com.wamazon.wamazonservice.service.ICrudService;
 import com.wamazon.wamazonservice.service.IProductService;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -38,5 +36,14 @@ public class ProductController extends CrudController<Product, ProductDto> {
     @Override
     public EntityMapper<Product, ProductDto> getMapper() {
         return productMapper;
+    }
+
+    @PostMapping("generate")
+    public void generate(@RequestBody ProductDto dtoToSave) {
+        for (int i = 0; i < 100_000; i++) {
+            Product productToSave = productMapper.mapToEntity(dtoToSave);
+            productToSave.setName(RandomStringUtils.randomAlphabetic(33));
+            productService.save(productToSave);
+        }
     }
 }

@@ -1,9 +1,9 @@
 package com.wamazon.wamazonservice.controller;
 
-import com.wamazon.wamazonservice.dto.IdentifiableDto;
+import com.wamazon.wamazonservice.dto.VersionedDto;
 import com.wamazon.wamazonservice.dto.valiation.Create;
 import com.wamazon.wamazonservice.dto.valiation.Update;
-import com.wamazon.wamazonservice.entity.IdentifiableEntity;
+import com.wamazon.wamazonservice.entity.VersionedEntity;
 import com.wamazon.wamazonservice.mapper.EntityMapper;
 import com.wamazon.wamazonservice.service.ICrudService;
 import org.springframework.validation.annotation.Validated;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 /**
  * Универсальные CRUD контроллер, позволяющий совершать CRUD операции с сущностями
  */
-public abstract class CrudController<E extends IdentifiableEntity, D extends IdentifiableDto> {
+public abstract class CrudController<E extends VersionedEntity, D extends VersionedDto> {
 
     public abstract ICrudService<E> getService();
 

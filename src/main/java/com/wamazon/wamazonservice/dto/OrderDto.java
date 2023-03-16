@@ -8,7 +8,7 @@ import java.util.List;
 
 @Getter
 @Setter
-public class OrderDto extends IdentifiableDto {
+public class OrderDto extends VersionedDto {
 
     private LocalDate creationDate;
 

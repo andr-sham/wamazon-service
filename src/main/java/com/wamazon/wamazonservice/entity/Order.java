@@ -13,7 +13,7 @@ import java.util.List;
 @Entity(name = "\"order\"")
 @Getter
 @Setter
-public class Order extends IdentifiableEntity {
+public class Order extends VersionedEntity {
 
     private LocalDate creationDate;
 

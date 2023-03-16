@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 @Entity
 @Getter
 @Setter
-public class Product extends IdentifiableEntity {
+public class Product extends VersionedEntity {
 
     /**
      * Название
