@@ -30,6 +30,10 @@ public class ProductService extends CrudService<Product> implements IProductServ
     }
 
     public String concat(String a, String b) {
+        if (a == null || b == null) {
+            return "";
+        }
+
         return a + b;
     }
 
