@@ -6,7 +6,7 @@
     <changeSet author="Timur_Sokolov" id="create-order-product-table">
         <createTable tableName="order_product">
             <column name="order_id" type="BIGINT">
-                <constraints nullable="false" foreignKeyName="fk_order_product_order" references="order(id)"/>
+                <constraints nullable="false" foreignKeyName="fk_order_product_orders" references="orders(id)"/>
             </column>
             <column name="product_id" type="BIGINT">
                 <constraints nullable="false" foreignKeyName="fk_order_product_product" references="product(id)"/>

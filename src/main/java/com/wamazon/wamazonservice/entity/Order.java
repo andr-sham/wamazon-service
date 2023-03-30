@@ -10,7 +10,7 @@ import lombok.Setter;
 import java.time.LocalDate;
 import java.util.List;
 
-@Entity(name = "\"order\"")
+@Entity(name = "orders")
 @Getter
 @Setter
 public class Order extends VersionedEntity {
