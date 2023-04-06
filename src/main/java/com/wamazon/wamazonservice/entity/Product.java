@@ -1,5 +1,6 @@
 package com.wamazon.wamazonservice.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,6 +15,7 @@ public class Product extends VersionedEntity {
     /**
      * Название
      */
+    @Column(nullable = false, updatable = false)
     private String name;
 
     /**

@@ -5,4 +5,6 @@ import com.wamazon.wamazonservice.entity.Order;
 public interface IOrderService {
 
     Order get(Long id);
+
+    Order createOrderFromUserCart();
 }

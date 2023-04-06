@@ -8,14 +8,23 @@ import org.springframework.web.context.WebApplicationContext;
 
 @Service
 @Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
-public class UserDetailsContextService {
+public class UserDetailsContextService implements IUserDetailsContextService {
+
+    public UserDetailsContextService() {
+        UserDetails ud = new UserDetails();
+        ud.setId(1L);
+
+        this.userDetails = ud;
+    }
 
     private UserDetails userDetails;
 
+    @Override
     public UserDetails getUserDetails() {
-        return userDetails;
+        return this.userDetails;
     }
 
+    @Override
     public void setUserDetails(UserDetails userDetails) {
         this.userDetails = userDetails;
     }

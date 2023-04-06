@@ -13,4 +13,13 @@ public class ProductServiceTest {
         String concat = productService.concat("Hel", "lo");
         Assertions.assertEquals("Hello", concat);
     }
+
+    @Test
+    public void concatEmptyTest() {
+        String concat = productService.concat(null, "lo");
+        Assertions.assertEquals("", concat);
+
+        concat = productService.concat("Hel", null);
+        Assertions.assertEquals("", concat);
+    }
 }

@@ -5,24 +5,30 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity(name = "orders")
+@Entity
 @Getter
 @Setter
-public class Order extends VersionedEntity {
-
-    private LocalDate creationDate;
+@NoArgsConstructor
+public class Cart extends VersionedEntity {
 
     @ManyToMany
     @JoinTable(
-            name = "order_product",
-            joinColumns = @JoinColumn(name = "order_id"),
+            name = "cart_product",
+            joinColumns = @JoinColumn(name = "cart_id"),
             inverseJoinColumns = @JoinColumn(name = "product_id")
     )
-    private List<Product> products = new ArrayList<>();
+    List<Product> products = new ArrayList<>();
+    private Long userId;
+
+    public Cart(Long userId) {
+        this.userId = userId;
+    }
+
+
 }

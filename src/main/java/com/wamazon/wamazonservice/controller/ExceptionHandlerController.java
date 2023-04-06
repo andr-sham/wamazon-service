@@ -1,6 +1,7 @@
 package com.wamazon.wamazonservice.controller;
 
 import com.wamazon.wamazonservice.dto.ErrorNotification;
+import com.wamazon.wamazonservice.exception.GeneralException;
 import com.wamazon.wamazonservice.exception.NotFoundException;
 import com.wamazon.wamazonservice.exception.ValidationException;
 import lombok.extern.slf4j.Slf4j;
@@ -50,6 +51,13 @@ public class ExceptionHandlerController {
     @ExceptionHandler(NotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ErrorNotification handleNotFoundException(NotFoundException e) {
+        ErrorNotification errorNotification = new ErrorNotification();
+        errorNotification.setErrorMessages(Collections.singletonList(e.getMessage()));
+        return errorNotification;
+    }
+
+    @ExceptionHandler(GeneralException.class)
+    public ErrorNotification handleGeneralException(GeneralException e) {
         ErrorNotification errorNotification = new ErrorNotification();
         errorNotification.setErrorMessages(Collections.singletonList(e.getMessage()));
         return errorNotification;
