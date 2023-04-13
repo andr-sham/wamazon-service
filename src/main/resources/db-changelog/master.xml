@@ -8,5 +8,6 @@
     <include file="classpath:db-changelog/v-1.0.3/cumulative.xml"/>
     <include file="classpath:db-changelog/v-1.0.4/cumulative.xml"/>
     <include file="classpath:db-changelog/v-1.0.5/cumulative.xml"/>
+    <include file="classpath:db-changelog/v-1.0.6/cumulative.xml"/>
 
 </databaseChangeLog>

@@ -1,6 +1,7 @@
 package com.wamazon.wamazonservice.controller;
 
 import com.wamazon.wamazonservice.dto.ErrorNotification;
+import com.wamazon.wamazonservice.exception.AuthException;
 import com.wamazon.wamazonservice.exception.GeneralException;
 import com.wamazon.wamazonservice.exception.NotFoundException;
 import com.wamazon.wamazonservice.exception.ValidationException;
@@ -63,9 +64,16 @@ public class ExceptionHandlerController {
         return errorNotification;
     }
 
+    @ExceptionHandler(AuthException.class)
+    public ErrorNotification handleAuthException(AuthException e) {
+        ErrorNotification errorNotification = new ErrorNotification();
+        errorNotification.setErrorMessages(Collections.singletonList(e.getMessage()));
+        return errorNotification;
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ErrorNotification handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
-        List<String> errors = new ArrayList<String>();
+        List<String> errors = new ArrayList<>();
         for (FieldError error : e.getBindingResult().getFieldErrors()) {
             errors.add(error.getDefaultMessage());
         }

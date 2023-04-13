@@ -101,7 +101,6 @@ public class ProductServiceIT extends BaseServiceConfiguration {
 
         mockMvc.perform(MockMvcRequestBuilders.get("/product/{id}", product.getId()))
                 .andExpect(status().is2xxSuccessful());
-
     }
 
     @Test
